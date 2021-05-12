@@ -13595,13 +13595,13 @@ Theory = np.array([1./(1+h), l/(1+l), (h-l)/((1+l)*(1+h))])
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="p">))</span>
         
     <span class="k">def</span> <span class="nf">print_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        try:</span>
-<span class="sd">            import matplotlib.pyplot as plt</span>
-<span class="sd">        except:</span>
-<span class="sd">            %pip install matplotlib -qqq</span>
-<span class="sd">            import matplotlib.pyplot as plt</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="o">%</span><span class="k">pip</span> install matplotlib -qqq
+            <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+        <span class="c1">#&quot;&quot;&quot;</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">t_final</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tFinal</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">period_variable_source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">period</span>
@@ -13866,27 +13866,6 @@ Theory = np.array([1./(1+h), l/(1+l), (h-l)/((1+l)*(1+h))])
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
-
 </div>
 </div>
 
