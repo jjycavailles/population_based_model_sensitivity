@@ -13234,657 +13234,52 @@ div#notebook {
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="scroll-down-and-click-on-show-widget">scroll down and click on show widget<a class="anchor-link" href="#scroll-down-and-click-on-show-widget">&#182;</a></h1><h1 id="if-the-simulation-doesn't-work">if the simulation doesn't work<a class="anchor-link" href="#if-the-simulation-doesn't-work">&#182;</a></h1><h4 id="1.-refresh">1. refresh<a class="anchor-link" href="#1.-refresh">&#182;</a></h4><h4 id="2.-click-again-on-show-widget">2. click again on show widget<a class="anchor-link" href="#2.-click-again-on-show-widget">&#182;</a></h4>
-</div>
-</div>
-</div>from IPython.core.display import display, HTML
-display(HTML("<style>.container { width:100% !important; }</style>"))
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">Layout</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-<span class="kn">import</span> <span class="nn">colorsys</span>
-<span class="kn">import</span> <span class="nn">pickle</span> <span class="c1"># package use to save data</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Image</span>
-<span class="kn">import</span> <span class="nn">nbinteract</span> <span class="k">as</span> <span class="nn">nbi</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ipyevents</span> <span class="kn">import</span> <span class="n">Event</span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">pip</span> install matplotlib -qqq
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
-  from cryptography.utils import int_from_bytes
-/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
-  from cryptography.utils import int_from_bytes
-Note: you may need to restart the kernel to use updated packages.
-</pre>
-</div>
-</div>
+<h1 id="Model">Model<a class="anchor-link" href="#Model">&#182;</a></h1><p>$\frac{d N_{ia}}{dt}   = R \cdot f_{ia}(N_{ia}(t), N_{ib}(t), N_{sab}(t), X_b(t)) \cdot (1 - d\cdot N(t)/K) \cdot N_{ia}(t) - m \cdot N_{ia}(t)$</p>
+<p>$\frac{d N_{ib}}{dt}   = R \cdot f_{ib}(N_{ia}(t), N_{ib}(t), N_{sab}(t), X_b(t)) \cdot (1 - d\cdot N(t)/K) \cdot 
+N_{ib}(t) - m \cdot N_{ib}(t)$</p>
+<p>$\frac{d N_{sab}}{dt}   = R \cdot f_{sab}(N_{ia}(t), N_{ib}(t), N_{sab}(t), X_b(t)) \cdot (1 - d\cdot N(t)/K) \cdot N_{sab}(t) - m \cdot N_{sab}(t)$</p>
 
 </div>
 </div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">population</span> <span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-
-    </div>
 </div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f_b</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">Xb</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
-    <span class="k">if</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Xb</span><span class="o">-</span><span class="n">l</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">**-</span><span class="mi">10</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">Xb</span><span class="o">/</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">elif</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Xb</span><span class="o">-</span><span class="n">h</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">**-</span><span class="mi">10</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">Xb</span><span class="o">/</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">S</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error!&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f_sab</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">Xb</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
-    <span class="k">if</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Xb</span><span class="o">-</span><span class="n">l</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">**-</span><span class="mi">10</span><span class="p">):</span>
-        <span class="k">return</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">S</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="k">elif</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Xb</span><span class="o">-</span><span class="n">h</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">**-</span><span class="mi">10</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">h</span><span class="o">/</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">S</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error!&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">F</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">Xb</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">SAB</span> <span class="o">=</span> <span class="n">S</span>
-    <span class="n">S2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">))</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
-    <span class="n">S2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">f_a</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">Xb</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="n">N</span><span class="o">/</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">A</span><span class="o">-</span><span class="n">m</span><span class="o">*</span><span class="n">A</span>
-    <span class="n">S2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">f_b</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">Xb</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="n">N</span><span class="o">/</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">B</span><span class="o">-</span><span class="n">m</span><span class="o">*</span><span class="n">B</span>
-    <span class="n">S2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">f_sab</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">Xb</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="n">N</span><span class="o">/</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">SAB</span><span class="o">-</span><span class="n">m</span><span class="o">*</span><span class="n">SAB</span>
-    <span class="k">return</span> <span class="n">S2</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">iterations</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">S_init</span><span class="p">,</span> <span class="n">XXb</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="n">dt</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">SS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="mi">3</span><span class="p">))</span>
-    <span class="n">SS</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">S_init</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">SS</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">SS</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">SS</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">XXb</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">l</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">SS</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Parameters">Parameters<a class="anchor-link" href="#Parameters">&#182;</a></h3>
+<p>I chose $f_{ia}, f_{ib}$ and $f_{sab}$ as the quantity of food a player gets by choosing the corresponding strategy:</p>
+<p>$f_{ia}(N_{ia}(t), N_{ib}(t), N_{sab}(t), X_b(t)) = 
+\left\{
+\begin{array}{lll}
+\frac{1}{N_{ia}(t) + N_{sab}(t)} &amp; if &amp; X_b = l \\
+\frac{1}{N_{ia}(t)} &amp; if &amp; X_b = h \\
+\end{array}
+\right.$</p>
+<p>$f_{ib}(N_{ia}(t), N_{ib}(t), N_{sab}(t), X_b(t)) = 
+\left\{
+\begin{array}{lll}
+\frac{l}{N_{ib}(t)} &amp; if &amp; X_b = l \\
+\frac{h}{N_{ib}(t) +  N_{sab}(t)} &amp; if &amp; X_b = h \\
+\end{array}
+\right.$</p>
+<p>$f_{sab}(N_{ia}(t), N_{ib}(t), N_{sab}(t), X_b(t)) = 
+\left\{
+\begin{array}{lll}
+\frac{1}{N_{ia}(t) + N_{sab}(t)} &amp; if &amp; X_b = l \\
+\frac{h}{N_{ib}(t) + N_{sab}(t)} &amp; if &amp; X_b = h \\
+\end{array}
+\right.$</p>
+
 </div>
 </div>
-</div>alpha = 0.5
-l = 0.5
-h = 6period_variable_source = 5nbreStep = 100
-t_final = 50
-T = np.linspace(0, t_final, nbreStep)Xb = l + (h-l)*np.random.binomial(1, alpha)plt.plot(Random_series)r = 1.2 # Reproduction rate
-m = 1. # Mortality rate (constant between 0.0 and 1.0)
-d = 0. # Effect of density regulation (constant, Mathus: d=0.0, Verhust: d>0.0, typical Verhust: d=1.0)
-K = 1000 # Carrying capacity of the habitatS_init = (np.zeros((3))+1./3 ) # * K
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Strat</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ia (always a)&quot;</span><span class="p">,</span> <span class="s2">&quot;ib (always b)&quot;</span><span class="p">,</span> <span class="s2">&quot;sab (sensitive)&quot;</span><span class="p">]</span>
-<span class="n">Color</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
 </div>
-</div>
-
-  </div>T = np.linspace(0, t_final, nbreStep)
-Random_series = np.zeros(nbreStep)
-Random_series_simple = np.random.binomial(1, alpha, size = nbreStep//period_variable_source) # generate again only if alpha changes
-for i in range(period_variable_source):
-    Random_series[i::period_variable_source] = Random_series_simple
-XXb = l + (h-l)*Random_series
-
-SS = iterations(T, [ia0, ib0, sab0])
-
-Theory = np.array([1./(1+h), l/(1+l), (h-l)/((1+l)*(1+h))])
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Dashboard">Dashboard<a class="anchor-link" href="#Dashboard">&#182;</a></h1>
+<p>On the following simulation, we can see that each frequency always converges to the theoretical prediction.</p>
+
 </div>
 </div>
 </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Select_box</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dashboard</span><span class="p">):</span>
-        
-        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span> <span class="o">=</span> <span class="n">dashboard</span>
-
-
-        <span class="c1">#initial point</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_ia0</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatLogSlider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span> <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;x_</span><span class="si">{ia}</span><span class="s2">^0&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span>  <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_ia0</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dashboard</span><span class="o">.</span><span class="n">on_ia0_selected</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_ib0</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatLogSlider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span> <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;x_</span><span class="si">{ib}</span><span class="s2">^0&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span>  <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_ib0</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dashboard</span><span class="o">.</span><span class="n">on_ib0_selected</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_sab0</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatLogSlider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span> <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;x_</span><span class="si">{sab}</span><span class="s2">^0&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span>  <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_sab0</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dashboard</span><span class="o">.</span><span class="n">on_sab0_selected</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_l</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatLogSlider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span> <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;l &quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span>  <span class="mf">0.6</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_l</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dashboard</span><span class="o">.</span><span class="n">on_l_selected</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_h</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatLogSlider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span> <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;h &quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span>  <span class="mf">0.6</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_h</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dashboard</span><span class="o">.</span><span class="n">on_h_selected</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_alpha</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_alpha</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dashboard</span><span class="o">.</span><span class="n">on_alpha_selected</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
-        
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_r</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_r</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dashboard</span><span class="o">.</span><span class="n">on_r_selected</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_m</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_m</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dashboard</span><span class="o">.</span><span class="n">on_m_selected</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_d</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_d</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dashboard</span><span class="o">.</span><span class="n">on_d_selected</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_k</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatLogSlider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">100000</span><span class="p">),</span> <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;K&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span>  <span class="mi">1000</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_k</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dashboard</span><span class="o">.</span><span class="n">on_k_selected</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
-   
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_tFinal</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatLogSlider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">10000</span><span class="p">),</span> <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;final time&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span>  <span class="mi">1000</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_tFinal</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dashboard</span><span class="o">.</span><span class="n">on_tFinal_selected</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_nbreStep</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;number of step&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span>  <span class="mi">10000</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_nbreStep</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dashboard</span><span class="o">.</span><span class="n">on_nbreStep_selected</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_period</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;period&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span>  <span class="mi">5</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_period</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dashboard</span><span class="o">.</span><span class="n">on_period_selected</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
-            
-        
-        
-        <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_ia0</span><span class="p">,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_ib0</span><span class="p">,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_sab0</span><span class="p">,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_l</span><span class="p">,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_h</span><span class="p">,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_alpha</span><span class="p">,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_r</span><span class="p">,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_m</span><span class="p">,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_d</span><span class="p">,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_k</span><span class="p">,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_tFinal</span><span class="p">,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_nbreStep</span><span class="p">,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">selection_period</span><span class="p">,</span>
-        <span class="p">]</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="p">))</span>   
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Image_box</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">Box</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dashboard</span><span class="p">):</span>
-        <span class="c1">#%pip install matplotlib</span>
-        <span class="c1">#import matplotlib.pyplot as plt</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Image</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span> <span class="o">=</span> <span class="n">dashboard</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">ia0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span><span class="o">.</span><span class="n">ia0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ib0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span><span class="o">.</span><span class="n">ib0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sab0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span><span class="o">.</span><span class="n">sab0</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">l</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span><span class="o">.</span><span class="n">l</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span><span class="o">.</span><span class="n">h</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span><span class="o">.</span><span class="n">alpha</span>
-  
-        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span><span class="o">.</span><span class="n">r</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span><span class="o">.</span><span class="n">m</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span><span class="o">.</span><span class="n">d</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span><span class="o">.</span><span class="n">k</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">tFinal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span><span class="o">.</span><span class="n">tFinal</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nbreStep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span><span class="o">.</span><span class="n">nbreStep</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dashboard</span><span class="o">.</span><span class="n">period</span>
-        
-        <span class="c1">#self.t_final = self.dashboard.tFinal</span>
-        <span class="c1">#self.period_variable_source = self.dashboard.period</span>
-        
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        
-        <span class="n">image_container</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Box</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="p">))</span>
-        
-        <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
-   <span class="c1">#     image_container,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">,</span>   
-        <span class="p">]</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="p">))</span>
-        
-    <span class="k">def</span> <span class="nf">print_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        try:</span>
-<span class="sd">            import matplotlib.pyplot as plt</span>
-<span class="sd">        except:</span>
-<span class="sd">            %pip install matplotlib -qqq</span>
-<span class="sd">            import matplotlib.pyplot as plt</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">t_final</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tFinal</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">period_variable_source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">period</span>
-        
-        
-        <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_final</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbreStep</span><span class="p">)</span>
-        <span class="n">Random_series_simple</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbreStep</span><span class="o">//</span><span class="bp">self</span><span class="o">.</span><span class="n">period_variable_source</span><span class="p">)</span> <span class="c1"># generate again only if alpha changes</span>
-        <span class="n">Random_series</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nbreStep</span><span class="p">)</span>
-        <span class="c1">#for i in range(self.period_variable_source):</span>
-        <span class="c1">#    Random_series[i::self.period_variable_source] = Random_series_simple</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Random_series_simple</span><span class="p">)):</span>
-            <span class="n">Random_series</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">period_variable_source</span><span class="p">:</span><span class="n">i</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">period_variable_source</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">period_variable_source</span><span class="p">:]</span> <span class="o">=</span> <span class="n">Random_series_simple</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-
-            
-        <span class="n">XXb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">l</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="p">)</span><span class="o">*</span><span class="n">Random_series</span>
-
-        <span class="n">SS</span> <span class="o">=</span> <span class="n">iterations</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ia0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ib0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sab0</span><span class="p">],</span> <span class="n">XXb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
-
-        <span class="n">Theory</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="p">),</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">))])</span>
-
-        <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
-
-        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Population model ODEs based on a simple Verhulst model&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
-        <span class="n">mmax</span> <span class="o">=</span> <span class="mf">1.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">SS</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span> <span class="p">,</span> <span class="n">mmax</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">XXb</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Xb = high&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span> <span class="p">,</span> <span class="n">mmax</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">XXb</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Xb = low&quot;</span><span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">strat</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Strat</span><span class="p">):</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">SS</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="n">strat</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="c1">#    plt.plot([T[0], T[-1]], [Theory[i], Theory[i]], color = Color[i])</span>
-        <span class="c1">#plt.ylim(0,1)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Populations&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
-
-        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Population model ODEs based on a simple Verhulst model&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">strat</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Strat</span><span class="p">):</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">SS</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">SS</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="n">strat</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">Theory</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">Theory</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span> <span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">XXb</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Xb = high&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span> <span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">XXb</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Xb = low&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="p">),</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">))],</span> <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;1./(1+h)&quot;</span><span class="p">,</span> <span class="s2">&quot;l/(1+l)&quot;</span><span class="p">,</span> <span class="s2">&quot;(h-l)/((1+l)*(1+h))&quot;</span><span class="p">])</span>
-
-
-        <span class="c1">#plt.show()</span>
-
-
-        <span class="n">image_file</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
-        <span class="c1">#fig.savefig(fname = image_file)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fname</span> <span class="o">=</span> <span class="n">image_file</span><span class="p">)</span>
-        <span class="n">image_file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">image_data</span> <span class="o">=</span> <span class="n">image_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">image_data</span>
-<span class="c1">#            self.image.width = 1500</span>
-<span class="c1">#           self.image.height = 2000</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="c1">#          file = open(nom, &quot;rb&quot;)</span>
-<span class="c1">#         image = file.read()</span>
-        <span class="c1">#plt.imshow(image)</span>
-<span class="c1">#        self.image.value = image</span>
- <span class="c1">#       self.image.format = &#39;png&#39;</span>
-        
-        
-        <span class="k">return</span>
-        
-
-    <span class="k">def</span> <span class="nf">change_ia0</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ia0</span> <span class="o">=</span> <span class="n">change</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        <span class="k">return</span>
-    
-    <span class="k">def</span> <span class="nf">change_ib0</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ib0</span> <span class="o">=</span> <span class="n">change</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        <span class="k">return</span>
-    
-    <span class="k">def</span> <span class="nf">change_sab0</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">obl0</span> <span class="o">=</span> <span class="n">change</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        <span class="k">return</span>
-    
-    <span class="k">def</span> <span class="nf">change_l</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">l</span> <span class="o">=</span> <span class="n">change</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        <span class="k">return</span>
-    
-    
-    <span class="k">def</span> <span class="nf">change_h</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">change</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        <span class="k">return</span>
-    
-    <span class="k">def</span> <span class="nf">change_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">change</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        <span class="k">return</span>
-    
-    <span class="k">def</span> <span class="nf">change_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">change</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        <span class="k">return</span>
-    
-    
-    <span class="k">def</span> <span class="nf">change_m</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="n">change</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        <span class="k">return</span>
-    
-    <span class="k">def</span> <span class="nf">change_d</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">change</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        <span class="k">return</span>
-    
-    <span class="k">def</span> <span class="nf">change_k</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">change</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        <span class="k">return</span>
-    
-    <span class="k">def</span> <span class="nf">change_tFinal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tFinal</span> <span class="o">=</span> <span class="n">change</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        <span class="k">return</span>
-    
-    <span class="k">def</span> <span class="nf">change_nbreStep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nbreStep</span> <span class="o">=</span> <span class="n">change</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        <span class="k">return</span>
-    
-    <span class="k">def</span> <span class="nf">change_period</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="o">=</span> <span class="n">change</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print_image</span><span class="p">()</span>
-        <span class="k">return</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Dashboard</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">ia0</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ib0</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sab0</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">l</span> <span class="o">=</span> <span class="mf">0.05</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="mf">0.02</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.6</span>
-          
-        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="mf">0.001</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="mf">0.008</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="mf">0.0036</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="mf">0.00036</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">tFinal</span> <span class="o">=</span> <span class="mi">1000</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nbreStep</span> <span class="o">=</span> <span class="mi">10000</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="o">=</span> <span class="mi">5</span>
-    
-        <span class="bp">self</span><span class="o">.</span><span class="n">select_box</span> <span class="o">=</span> <span class="n">Select_box</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-    <span class="c1">#    self.text_box = Text_box(self)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span> <span class="o">=</span> <span class="n">Image_box</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        
-        
-        <span class="n">C1</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Box</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;65%&quot;</span><span class="p">))</span>
-        <span class="n">C2</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Box</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">select_box</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;32%&quot;</span><span class="p">))</span>
-        
-        <span class="c1">#rowA = widgets.Box([self.image_box, self.select_box], layout=Layout(width=&quot;100%&quot;))</span>
-        <span class="n">rowA</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="n">C1</span><span class="p">,</span> <span class="n">C2</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="p">))</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">([</span><span class="n">rowA</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="p">))</span>
-    
-
-    
-    
-    <span class="k">def</span> <span class="nf">on_ia0_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ia0</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="o">.</span><span class="n">change_ia0</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">on_ib0_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ib0</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="o">.</span><span class="n">change_ib0</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">on_sab0_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sab0</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="o">.</span><span class="n">change_sab0</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
-        
-
-    <span class="k">def</span> <span class="nf">on_l_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">l</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="o">.</span><span class="n">change_l</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">on_h_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="o">.</span><span class="n">change_h</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
-        
-    <span class="k">def</span> <span class="nf">on_alpha_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="o">.</span><span class="n">change_alpha</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
-
-        
-    <span class="k">def</span> <span class="nf">on_r_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="o">.</span><span class="n">change_r</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">on_m_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="o">.</span><span class="n">change_m</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">on_d_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="o">.</span><span class="n">change_d</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">on_k_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="o">.</span><span class="n">change_k</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
-        
-    <span class="k">def</span> <span class="nf">on_tFinal_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tFinal</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="o">.</span><span class="n">change_tFinal</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
-        
-    <span class="k">def</span> <span class="nf">on_nbreStep_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nbreStep</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="o">.</span><span class="n">change_nbreStep</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
-        
-    <span class="k">def</span> <span class="nf">on_period_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_box</span><span class="o">.</span><span class="n">change_period</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Model">Model<a class="anchor-link" href="#Model">&#182;</a></h1>
+<h1 id="Simulation">Simulation<a class="anchor-link" href="#Simulation">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -13897,8 +13292,8 @@ Theory = np.array([1./(1+h), l/(1+l), (h-l)/((1+l)*(1+h))])
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">D</span><span class="o">=</span><span class="n">Dashboard</span><span class="p">()</span>
-<span class="n">D</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">dashboard</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">Dashboard</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13927,23 +13322,16 @@ Theory = np.array([1./(1+h), l/(1+l), (h-l)/((1+l)*(1+h))])
 </div>
 
   </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="If-the-simulation-doesn't-work-(it-may-take-a-long-time)">If the simulation doesn't work (it may take a long time)<a class="anchor-link" href="#If-the-simulation-doesn't-work-(it-may-take-a-long-time)">&#182;</a></h3><ol>
+<li>refresh</li>
+<li>click again on show widget</li>
+</ol>
 
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
 </div>
 </div>
-
-  </div>
+</div>
 
   
 
