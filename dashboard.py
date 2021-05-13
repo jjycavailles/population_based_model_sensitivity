@@ -8,8 +8,11 @@ import nbinteract as nbi
 
 import numpy as np
 
-%pip install matplotlib -qqq
-import matplotlib.pyplot as plt
+#pip3 install matplotlib -qqq
+#import pip
+#pip._internal.main(['install', matplotlib])
+#import matplotlib.pyplot as plt
+
 
 from population import *
 
@@ -122,13 +125,13 @@ class Image_box(widgets.Box):
         super().__init__(children, layout=Layout(width="100%"))
         
     def print_image(self):
-        """
+        #"""
         try:
             import matplotlib.pyplot as plt
         except:
             %pip install matplotlib -qqq
             import matplotlib.pyplot as plt
-        """
+        #"""
         
         self.t_final = self.tFinal
         self.period_variable_source = self.period
