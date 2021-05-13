@@ -129,7 +129,9 @@ class Image_box(widgets.Box):
         try:
             import matplotlib.pyplot as plt
         except:
-            %pip install matplotlib -qqq
+			         import pip
+			         pip._internal.main(['install', matplotlib])
+            #%pip install matplotlib -qqq
             import matplotlib.pyplot as plt
         #"""
         
