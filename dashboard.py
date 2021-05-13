@@ -7,6 +7,8 @@ from IPython.display import display, Image
 import nbinteract as nbi
 
 import numpy as np
+
+%pip install matplotlib -qqq
 import matplotlib.pyplot as plt
 
 from population import *
