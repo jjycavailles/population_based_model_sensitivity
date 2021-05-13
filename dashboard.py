@@ -131,8 +131,7 @@ class Image_box(widgets.Box):
         except:
 			         import pip
 			         pip._internal.main(['install', matplotlib])
-            #%pip install matplotlib -qqq
-            import matplotlib.pyplot as plt
+			         import matplotlib.pyplot as plt
         #"""
         
         self.t_final = self.tFinal
